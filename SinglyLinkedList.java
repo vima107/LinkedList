@@ -24,6 +24,7 @@ public class SinglyLinkedList {
             tail=head;
         }
         size++;
+        display();
     }
 
     //Insertinting the elements in the last position...
@@ -38,6 +39,7 @@ public class SinglyLinkedList {
         tail.next=node;
         tail=node;
         size++;
+        display();
     }
 
     //inserting an element in specific index
@@ -61,10 +63,10 @@ public class SinglyLinkedList {
         Node node=new Node(value, temp.next);
         temp.next=node;
         size++;
+        display();
     }
-
     //deleting the first index element i.e head node
-    public void delteFirst()
+    public void deleteFirst()
     {
         head=head.next;
         if(head==null)
@@ -72,6 +74,7 @@ public class SinglyLinkedList {
             tail=null;
         }
         size--;
+        display();
     }
 
     //deleteing the last index element i.e, tail node
@@ -81,6 +84,7 @@ public class SinglyLinkedList {
         tail=seconLast;
         tail.next=null;
         size--;
+        display();
     }
 
     public Node secondLastNode(int lastNode)
@@ -92,23 +96,28 @@ public class SinglyLinkedList {
         }
         return temp;
     }
-
     //deleting element of specific index
     public void delete(int index)
     {
         if(index==0)
         {
-            delteFirst();
+            deleteFirst();
         }
         if(index==size-1)
         {
             deleteLast();
+        }
+        if(index<0 || index>=size)
+        {
+            System.out.println("Invalid index");
+            return;
         }
         Node currentValue=deleteSpecificNode(index-1);
         Node temp=currentValue.next.next;
         currentValue.next.next=null;
         currentValue.next=temp;
         size--;
+        display();
     }
 
     public Node deleteSpecificNode(int index)
@@ -124,28 +133,33 @@ public class SinglyLinkedList {
 
     public void search(int value)
     {
-       int index=searching(value);
-       if(index==-1)
-       {
-           System.out.println("there's no such element is present");
-       }
-       else {
-           System.out.println("the element "+value+" is present at "+index);
-       }
+        ArrayList<Integer> arr=new ArrayList<>();
+        searchHelper(value,arr);
+        if(arr.size()==0)
+        {
+            System.out.println("element is not present");
+            return;
+        }
+        System.out.print("element is present at index: ");
+        for(int i=0;i<arr.size();i++)
+        {
+            System.out.print(arr.get(i)+" ,");
+        }
+        System.out.println();
     }
 
-    public int searching(int value){
+    public List<Integer> searchHelper(int value, List<Integer>arr)
+    {
         Node temp=head;
-
         for(int i=0;i<size;i++)
         {
             if(temp.value==value)
             {
-                return i;
+                arr.add(i);
             }
             temp=temp.next;
         }
-        return -1;
+        return arr;
     }
 
     //displaying element
@@ -157,6 +171,28 @@ public class SinglyLinkedList {
             temp=temp.next;
         }
         System.out.println("end point");
+    }
+
+    public void update(int index, int value)
+    {
+        if(index<0 || index==size)
+        {
+            System.out.println("Invalid index");
+            return;
+        }
+        Node temp=updateHelper(index);
+        temp.value=value;
+        display();
+    }
+
+    public Node updateHelper(int index)
+    {
+        Node temp=head;
+        for(int i=0;i<index;i++)
+        {
+            temp=temp.next;
+        }
+        return temp;
     }
 
     // this is the node object class
