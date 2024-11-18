@@ -1,7 +1,6 @@
 # LinkedList
-
-Doubly linked list still in progress
-
+# Singly LinkedList.
+# Doubly LinkedList.
 
 methods:
 1).insertFirst(value): to add the node element at first position.
@@ -21,4 +20,6 @@ methods:
 8).deleteLast(): to delete the last node element.
 
 9).search(value): to search the specific node element is present or not.
+
+10). update(index, value): to update an existing node element.
 
