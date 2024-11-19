@@ -1,5 +1,8 @@
 package com.vima;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //this is a class for head and tail
 public class SinglyLinkedList {
     private Node head;
@@ -87,7 +90,7 @@ public class SinglyLinkedList {
         display();
     }
 
-    public Node secondLastNode(int lastNode)
+    private Node secondLastNode(int lastNode)
     {
         Node temp=head;
         for(int i=0; i<lastNode;i++)
@@ -120,7 +123,7 @@ public class SinglyLinkedList {
         display();
     }
 
-    public Node deleteSpecificNode(int index)
+    private Node deleteSpecificNode(int index)
     {
         Node temp=head;
         for(int i=0;i<index;i++)
@@ -135,17 +138,20 @@ public class SinglyLinkedList {
     {
         ArrayList<Integer> arr=new ArrayList<>();
         searchHelper(value,arr);
-        if(arr.size()==0)
+        if(arr.isEmpty())
         {
             System.out.println("element is not present");
             return;
         }
-        System.out.print("element is present at index: ");
-        for(int i=0;i<arr.size();i++)
-        {
-            System.out.print(arr.get(i)+" ,");
+        else {
+            System.out.print("element is present at index: ");
+            for(int i=0;i<arr.size();i++)
+            {
+                System.out.print(arr.get(i)+" ,");
+            }
         }
         System.out.println();
+
     }
 
     public List<Integer> searchHelper(int value, List<Integer>arr)
@@ -165,6 +171,11 @@ public class SinglyLinkedList {
     //displaying element
     public void display(){
         Node temp=head;
+        if(temp==null)
+        {
+            System.out.println("List is empty");
+            return;
+        }
         while(temp!=null)
         {
             System.out.print(temp.value+"->");
@@ -185,7 +196,7 @@ public class SinglyLinkedList {
         display();
     }
 
-    public Node updateHelper(int index)
+    private Node updateHelper(int index)
     {
         Node temp=head;
         for(int i=0;i<index;i++)
@@ -196,7 +207,7 @@ public class SinglyLinkedList {
     }
 
     // this is the node object class
-    private class Node{
+    private static class Node{
         private int value;
         private Node next;
 
