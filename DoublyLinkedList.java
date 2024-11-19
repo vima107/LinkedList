@@ -158,7 +158,7 @@ public class DoublyLinkedList {
         display();
     }
 
-    public Node deleteHelper(int index)
+    private Node deleteHelper(int index)
     {
         Node temp=head;
         for(int i=0;i<index;i++)
@@ -170,8 +170,13 @@ public class DoublyLinkedList {
 
     public void display()
     {
-        Node temp=head;
 
+        Node temp=head;
+        if(temp==null)
+        {
+            System.out.println("List is empty:");
+            return;
+        }
         while(temp!=null)
         {
             System.out.print(temp.value+"->");
@@ -203,7 +208,7 @@ public class DoublyLinkedList {
         display();
     }
 
-    public Node updateHelper(int index)
+    private Node updateHelper(int index)
     {
         Node temp=head;
         for(int i=0;i<index;i++)
@@ -245,7 +250,7 @@ public class DoublyLinkedList {
         return arr;
     }
 
-    private class Node{
+    private static class Node{
         private int value;
         private Node next;
         private Node prev;
